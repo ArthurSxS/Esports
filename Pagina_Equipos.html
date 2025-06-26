@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipos - E-Sports Tournaments</title>
+  <style>
+  
+    /* 1. SMOOTH SCROLLING */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 112px; /* Compensa el espacio de las barras de navegación fijas */
+    }
+    
+    /* 2. RESET BÁSICO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+   
+    /* ESTILOS GLOBALES */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222222;
+      color: #1DCD9F;
+      line-height: 1.6;
+      /* Dejamos espacio para las dos barras fijas: Global (64px) + Secondary (48px) = 112px */
+      padding-top: 112px;
+    }
+    /* Animación fade-in general */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+   
+    /* GLOBAL NAVIGATION (visible en todas las páginas) */
+    .global-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background-color: #000000;
+      z-index: 1100;
+      padding: 1rem 0;
+    }
+    .global-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0;
+    }
+    .global-nav a {
+      color: #1DCD9F;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .global-nav a:hover {
+      color: #169976;
+    }
+   
+    /* SECONDARY NAVIGATION (navegación interna para secciones) */
+    .secondary-nav {
+      position: fixed;
+      top: 64px;  /* Justo debajo de la global nav */
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background-color: #222222;
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .secondary-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    .secondary-nav a {
+      color: #1DCD9F;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .secondary-nav a:hover {
+      color: #169976;
+    }
+    
+    /* TÍTULO DE LA PÁGINA */
+    .page-title {
+      text-align: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .page-title h1 {
+      font-size: 2.5rem;
+    }
+    .page-title p {
+      font-size: 1.2rem;
+      color: #169976;
+    }
+    
+    /* CONTENEDOR GENERAL DE SECCIONES (Equipos) */
+    .teams-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .teams-section h2 {
+      text-align: center;
+      margin: 1.5rem 0 1rem;
+      font-size: 2rem;
+      border-bottom: 2px solid #1DCD9F;
+      padding-bottom: 0.5rem;
+      /* Agregamos un pequeño desplazamiento para compensar la nav secundaria */
+      scroll-margin-top: 112px;
+    }
+    
+    /* GRID PARA LAS TARJETAS */
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    
+    .team-card {
+      background-color: #000000;
+      border: 2px solid #1DCD9F;
+      width: 280px;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.7);
+    }
+    .team-card img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border: 1px solid #1DCD9F;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+    .team-card img:hover {
+      transform: scale(1.03);
+    }
+    .team-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #1DCD9F;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .team-card h3:hover {
+      transform: scale(1.05);
+      color: #169976;
+    }
+    .team-card p {
+      font-size: 1rem;
+      color: #169976;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .cards-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- GLOBAL NAVIGATION (para todas las páginas) -->
+  <nav class="global-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Pagina_Torneos.html">Torneos</a></li>
+      <li><a href="Pagina_Equipos.html">Equipos</a></li>
+      <li><a href="Pagina_Noticias.html">Noticias</a></li>
+    </ul>
+  </nav>
+  
+  <!-- SECONDARY NAVIGATION (solo en esta página: Equipos) -->
+  <nav class="secondary-nav">
+    <ul>
+      <li><a href="#lol">League of Legends</a></li>
+      <li><a href="#dota">Dota 2</a></li>
+      <li><a href="#csgo">CS:GO</a></li>
+      <li><a href="#ml">Mobile Legends</a></li>
+    </ul>
+  </nav>
+  
+  <!-- TÍTULO DE LA PÁGINA -->
+  <div class="page-title">
+    <h1>Equipos</h1>
+    <p>Conoce a los equipos reconocidos mundialmente en el mundo de los E-Sports</p>
+  </div>
+  
+  <div class="teams-section">
+    <!-- Sección League of Legends -->
+    <h2 id="lol">League of Legends</h2>
+    <div class="cards-grid">
+      <div class="team-card">
+        <img src="Img_Equipos/4aa2fa817ad0930b3b70160c83fa6a1a7a4237018f092b139aefcc9f71.jpeg" alt="T1">
+        <h3>T1</h3>
+        <p>Orgullo surcoreano, T1 es uno de los equipos más laureados de LoL, conocidos por su dominio en el Campeonato Mundial.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/esports-social-media-engagement.jpeg" alt="G2 Esports">
+        <h3>G2 Esports</h3>
+        <p>Con sede en Europa, G2 Esports es destacado por su estilo de juego agresivo y su éxito en competencias internacionales.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/maxresdefault.jpg" alt="Cloud9">
+        <h3>Cloud9</h3>
+        <p>El estadounidense Cloud9 destaca por su innovación y constante evolución, marcando tendencia en la escena de LoL.</p>
+      </div>
+    </div>
+    
+    <!-- Sección Dota 2 -->
+    <h2 id="dota">Dota 2</h2>
+    <div class="cards-grid">
+      <div class="team-card">
+        <img src="Img_Equipos/a539ba2314159c9f5e17f72a8cec4283.jpg" alt="OG">
+        <h3>OG</h3>
+        <p>Conocido por sus remontadas épicas, OG es uno de los equipos más emblemáticos en la historia de Dota 2.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/534px-TeamSecret_WePlay_AniMajor_2021.jpg" alt="Team Secret">
+        <h3>Team Secret</h3>
+        <p>Este equipo europeo destaca por su juego estratégico y comunicación en equipo, siempre en la pelea por grandes títulos.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/534px-PSG.LGD_WePlay_AniMajor_2021.jpg" alt="PSG.LGD">
+        <h3>PSG.LGD</h3>
+        <p>Uno de los favoritos en la escena china, PSG.LGD ha demostrado ser un contendiente constante en The International.</p>
+      </div>
+    </div>
+    
+    <!-- Sección CS:GO -->
+    <h2 id="csgo">CS:GO</h2>
+    <div class="cards-grid">
+      <div class="team-card">
+        <img src="Img_Equipos/1738x800-1738x800.jpg" alt="Na'Vi">
+        <h3>Natus Vincere</h3>
+        <p>Conocidos como Na'Vi, este equipo ucraniano tiene una larga historia de éxito y talento en torneos internacionales.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/FaZeClanCopenhagenMajor.jpg" alt="FaZe Clan">
+        <h3>FaZe Clan</h3>
+        <p>FaZe Clan es reconocido por su mezcla de jugadores veteranos y nuevos talentos, buscando siempre romper récords.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/6384cbe2914b6c397ced177d_01 - MATCHGRAPHIC - 1920X1080 RED.jpg" alt="Astralis">
+        <h3>Astralis</h3>
+        <p>Astralis ha sido sinónimo de excelencia en CS:GO, destacándose por su cohesión y estrategias innovadoras.</p>
+      </div>
+    </div>
+    
+    <!-- Sección Mobile Legends -->
+    <h2 id="ml">Mobile Legends</h2>
+    <div class="cards-grid">
+      <div class="team-card">
+        <img src="Img_Equipos/onic.jpg" alt="Onic Esports">
+        <h3>Onic Esports</h3>
+        <p>Onic Esports es uno de los equipos más destacados en Mobile Legends, reconocido por su habilidad y resultados contundentes en torneos internacionales.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/maxresdefault (1).jpg" alt="Blacklist International">
+        <h3>Blacklist International</h3>
+        <p>Con sede en el sudeste asiático, Blacklist International ha dejado su huella en la escena de MLBB con un juego agresivo y estratégico.</p>
+      </div>
+      <div class="team-card">
+        <img src="Img_Equipos/images.jpeg" alt="EVOS Esports">
+        <h3>EVOS Esports</h3>
+        <p>EVOS Esports destaca por su solidez y consistencia en Mobile Legends, siendo un referente en competiciones regionales e internacionales.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

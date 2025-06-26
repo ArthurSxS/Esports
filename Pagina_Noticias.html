@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias - E-Sports Tournaments</title>
+  <style>
+    /* RESET BÁSICO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* ESTILOS GLOBALES */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222222;
+      color: #1DCD9F;
+      line-height: 1.6;
+      /* Dejamos espacio para la barra de navegación fija (80px aprox.) */
+      padding-top: 80px;
+    }
+    
+    /* KEYFRAMES DE ANIMACIÓN FADE IN */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* BARRA DE NAVEGACIÓN FIJA */
+    nav {
+      background-color: #000000;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      color: #1DCD9F;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #169976;
+    }
+    
+    /* TÍTULO DE LA PÁGINA */
+    .page-title {
+      text-align: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease-out;
+    }
+    .page-title h1 {
+      font-size: 2.5rem;
+    }
+    .page-title p {
+      font-size: 1.2rem;
+      color: #169976;
+    }
+    
+    /* CONTENEDOR DE TARJETAS DE NOTICIAS */
+    .news-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    /* TARJETA DE NOTICIA */
+    .news-card {
+      background-color: #000000;
+      border: 2px solid #1DCD9F;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .news-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    }
+    .news-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .news-card img:hover {
+      transform: scale(1.05);
+    }
+    .news-card .news-content {
+      padding: 1rem;
+      flex: 1;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .news-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #1DCD9F;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .news-card h3:hover {
+      transform: scale(1.05);
+      color: #169976;
+    }
+    .news-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #169976;
+    }
+    
+    /* FOOTER */
+    footer {
+      background-color: #000000;
+      color: #1DCD9F;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de navegación fija -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Pagina_Torneos.html">Torneos</a></li>
+      <li><a href="Pagina_Equipos.html">Equipos</a></li>
+      <li><a href="Pagina_Noticias.html">Noticias</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Título de la página -->
+  <div class="page-title">
+    <h1>Noticias Actuales</h1>
+    <p>Lo último en E-Sports y Torneos</p>
+  </div>
+  
+  <!-- Contenedor de tarjetas de noticias -->
+  <div class="news-container">
+    <!-- Tarjeta de Noticia 1 -->
+    <div class="news-card">
+      <img src="Img_Noticias/actualizacion-9-eafc-25.jpeg" alt="Actualización de eSports">
+      <div class="news-content">
+        <h3>La evolución de los eSports en 2025</h3>
+        <p>Descubre cómo las nuevas tecnologías y formatos están revolucionando el mundo de las competiciones en los eSports.</p>
+      </div>
+    </div>
+    
+    <!-- Tarjeta de Noticia 2 -->
+    <div class="news-card">
+      <img src="Img_Noticias/images.jpeg" alt="Torneo de CS:GO">
+      <div class="news-content">
+        <h3>CS:GO: Grandes sorpresas en IEM Cologne</h3>
+        <p>El torneo IEM Cologne 2025 trae resultados inesperados y una competencia reñida en cada partida.</p>
+      </div>
+    </div>
+    
+    <!-- Tarjeta de Noticia 3 -->
+    <div class="news-card">
+      <img src="Img_Noticias/The-International-llega-kilos_1399670021_515439_880x600.jpg" alt="The International de Dota 2">
+      <div class="news-content">
+        <h3>The International: La batalla por el gran premio</h3>
+        <p>Los equipos se preparan para el evento insignia de Dota 2, con cambios en el formato y premios históricos.</p>
+      </div>
+    </div>
+    
+    <!-- Tarjeta de Noticia 4 -->
+    <div class="news-card">
+      <img src="Img_Noticias/117062ea-00f6-49a7-bdb8-b7e29d41bb9c.jpg" alt="Actualizaciones en Mobile Legends">
+      <div class="news-content">
+        <h3>Novedades en Mobile Legends 2025</h3>
+        <p>Descubre los nuevos campeones, balanceos y estrategias que están definiendo la próxima temporada competitiva.</p>
+      </div>
+    </div>
+    
+    <!-- Tarjeta de Noticia 5 -->
+    <div class="news-card">
+      <img src="Img_Noticias/images (1).jpeg" alt="EVO Championship Series">
+      <div class="news-content">
+        <h3>EVO 2025: Innovación en Juegos de Lucha</h3>
+        <p>La EVO Championship Series presenta un nuevo formato y tecnologías de transmisión que llevan la experiencia de los juegos de lucha a un nuevo nivel.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 E-Sports Tournaments. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

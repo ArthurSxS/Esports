@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torneos - E-Sports Tournaments</title>
+  <style>
+    /* ────────────────────────────────── */
+    /* RESET BÁSICO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* ────────────────────────────────── */
+    /* ESTILOS GLOBALES */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222222;
+      color: #1DCD9F;
+      line-height: 1.6;
+      /* Dejamos espacio para la navbar fija */
+      padding-top: 80px;
+    }
+    
+    /* ────────────────────────────────── */
+    /* BARRA DE NAVEGACIÓN FIJA */
+    nav {
+      background-color: #000000;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      color: #1DCD9F;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #169976;
+    }
+    
+    /* ────────────────────────────────── */
+    /* TÍTULO DE LA PÁGINA */
+    .page-title {
+      text-align: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease-out;
+    }
+    .page-title h1 {
+      font-size: 2.5rem;
+    }
+    .page-title p {
+      font-size: 1.2rem;
+      color: #169976;
+    }
+    
+    /* ────────────────────────────────── */
+    /* CONTENEDOR DE TORNEOS */
+    .tournaments-container {
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    /* Tarjetas de torneo con animación en hover */
+    .tournament-card {
+      background-color: #000000;
+      border: 2px solid #1DCD9F;
+      padding: 1rem;
+      width: 300px;
+      text-align: center;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tournament-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.7);
+    }
+    
+    .tournament-card img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border: 1px solid #1DCD9F;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+    .tournament-card img:hover {
+      transform: scale(1.03);
+    }
+    
+    .tournament-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #1DCD9F;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .tournament-card h2:hover {
+      transform: scale(1.05);
+      color: #169976;
+    }
+    
+    .tournament-card p {
+      font-size: 1rem;
+    }
+    
+    /* ────────────────────────────────── */
+    /* KEYFRAMES DE ANIMACIÓN: FADE IN */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de navegación fija -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Pagina_Torneos.html">Torneos</a></li>
+      <li><a href="Pagina_Equipos.html">Equipos</a></li>
+      <li><a href="Pagina_Noticias.html">Noticias</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Título de la página -->
+  <div class="page-title">
+    <h1>Torneos</h1>
+    <p>Descubre los principales torneos del mundo de los E-Sports</p>
+  </div>
+  
+  <!-- Contenedor de torneos -->
+  <div class="tournaments-container">
+    <!-- Campeonato Mundial de League of Legends -->
+    <div class="tournament-card">
+      <img src="Img_Torneo/pngegg (1).png" alt="Campeonato Mundial de League of Legends">
+      <h2>League of Legends Worlds</h2>
+      <p>El Campeonato Mundial de League of Legends reúne a los equipos de elite para competir por la Copa del Invocador y millones en premios.</p>
+    </div>
+
+    <!-- The International de Dota 2 -->
+    <div class="tournament-card">
+      <img src="Img_Torneo/pngegg (2).png" alt="The International de Dota 2">
+      <h2>The International</h2>
+      <p>The International es el torneo de Dota 2 con el mayor premio del mundo, donde los equipos luchan para dejar su huella en la historia de los esports.</p>
+    </div>
+
+    <!-- Torneo de CS:GO: IEM Cologne -->
+    <div class="tournament-card">
+      <img src="Img_Torneo/counter-strike.jpg" alt="IEM Cologne">
+      <h2>IEM Cologne</h2>
+      <p>IEM Cologne es uno de los torneos más prestigiosos de CS:GO, reconocido por su alta calidad competitiva y espectacular ambiente en vivo.</p>
+    </div>
+
+    <!-- Torneo de CS:GO: BLAST.tv -->
+    <div class="tournament-card">
+      <img src="Img_Torneo/CSGO-Team-Vitality-CAMPEON-de-la-BLASTtv-Paris-Major-2023-Francia-Esports-counter-strike-global-offensive-valve-gaming-apEX-ZywOo-zonic-Magisk-dupreeh-Spinx-01.jpg" alt="BLAST.tv CS:GO">
+      <h2>BLAST.tv</h2>
+      <p>BLAST.tv organiza eventos innovadores en CS:GO, con formatos nuevos y producciones de primer nivel que capturan la atención de la comunidad.</p>
+    </div>
+
+    <!-- Campeonato Mundial de Mobile Legends: Bang Bang -->
+    <div class="tournament-card">
+      <img src="Img_Torneo/hq720.jpg" alt="Campeonato Mundial MLBB">
+      <h2>MLBB World Championship</h2>
+      <p>El Campeonato Mundial de Mobile Legends: Bang Bang concluye la temporada competitiva, reuniendo equipos de Asia y del mundo en una batalla épica.</p>
+    </div>
+
+    <!-- EVO Championship Series (juegos de lucha) -->
+    <div class="tournament-card">
+      <img src="Img_Torneo/images.jpeg" alt="EVO Championship Series">
+      <h2>EVO Championship Series</h2>
+      <p>EVO es el torneo de lucha más importante, que celebra anualmente a los mejores competidores de juegos de pelea en el escenario global.</p>
+    </div>
+  </div>
+</body>
+</html>

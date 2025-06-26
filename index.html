@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - E-Sports Tournaments</title>
+  <style>
+    
+    /* 1. SMOOTH SCROLLING              */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 112px;
+    }
+    
+    /* 2. RESET y ESPACIADOS INICIALES  */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* 3. ANIMACIONES */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Ajustamos el padding-top para dejar espacio para dos navbars:
+       Global nav: 64px y Secondary nav: 48px (en total 112px) */
+    body {
+      padding-top: 112px;  /* 64 + 48 */
+      margin-right: 300px; /* si usas aside fijo */
+      font-family: Arial, sans-serif;
+      background-color: #222222;
+      color: #1DCD9F;
+      line-height: 1.6;
+    }
+   
+    /* GLOBAL NAVIGATION (para todas las páginas) */
+    .global-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background-color: #000000;
+      z-index: 1100;
+      padding: 1rem 0;
+    }
+    .global-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0;
+    }
+    .global-nav a {
+      color: #1DCD9F;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .global-nav a:hover {
+      color: #169976;
+    }
+  
+    /* SECONDARY NAVIGATION (solo en la página de Inicio) */
+    .secondary-nav {
+      position: fixed;
+      top: 64px;  /* Justo debajo de la global nav */
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background-color: #222222;
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .secondary-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    .secondary-nav a {
+      color: #1DCD9F;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .secondary-nav a:hover {
+      color: #169976;
+    }
+    
+    /* TÍTULO DE LA PÁGINA */
+    /* Se le asigna id="titulo" para poder enlazar desde la secondary nav */
+    /* Además, se establece un scroll-margin-top para compensar las barras fijas */
+    #titulo {
+      scroll-margin-top: 112px;
+    }
+    .page-title {
+      position: relative;
+      text-align: center;
+      padding: 1rem;
+      background-color: #222222;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .title-content {
+      position: relative;
+      z-index: 2;
+    }
+    .title-left, .title-right {
+      position: absolute;
+      width: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      animation: fadeIn 1s ease-out;
+    }
+    .title-left {
+      left: 1rem;
+    }
+    .title-right {
+      right: 1rem;
+    }
+    
+    /* SLIDER (CARRUSEL) */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin: 1rem 0;
+      background-color: #222222;
+      animation: fadeIn 1s ease-out;
+    }
+    .slider .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slider .slide.active {
+      opacity: 1;
+    }
+    .slider .slide::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Las imágenes ocuparán todo el contenedor */
+    .slider img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    
+    /* Efectos en .info-section (hover en encabezados e imágenes) */
+    .info-section h2 {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .info-section img {
+      transition: transform 0.3s ease;
+    }
+    .info-section h2:hover,
+    .info-section img:hover {
+      transform: scale(1.05);
+      color: #222222;
+    }
+    
+    /* SECCIÓN DE VIDEOS DESTACADOS */
+    .video-section {
+      background-color: #222222;
+      border: 2px solid #1DCD9F;
+      padding: 2rem;
+      margin: 1rem auto;
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .video-section h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: #1DCD9F;
+    }
+    .video-grid {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .video-wrapper {
+      flex: 1 1 500px;
+      max-width: 560px;
+    }
+    .video-wrapper iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-wrapper iframe:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* ASIDE FIJO */
+    aside.aside-section {
+      position: fixed;
+      top: 120px;
+      right: 1rem;
+      width: 250px;
+      background-color: #222222;
+      border: 2px solid #1DCD9F;
+      color: #1DCD9F;
+      padding: 1rem;
+      text-align: center;
+      z-index: 500;
+      animation: fadeIn 1s ease-out;
+    }
+    aside.aside-section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+    aside.aside-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    aside.aside-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    aside.aside-section a {
+      color: #1DCD9F;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    aside.aside-section a:hover {
+      color: #169976;
+    }
+    aside.aside-section img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      margin-top: 1rem;
+    }
+    
+    /* SECCIONES INFO (información principal) */
+    .info-section {
+      padding: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .info-section:nth-of-type(odd) {
+      background-color: #1DCD9F;
+      color: #222222;
+    }
+    .info-section:nth-of-type(even) {
+      background-color: #169976;
+      color: #222222;
+      flex-direction: row-reverse;
+    }
+    .info-section img {
+      width: 50%;
+      max-width: 300px;
+      margin-right: 1rem;
+    }
+    .info-section:nth-of-type(even) img {
+      margin-right: 0;
+      margin-left: 1rem;
+    }
+    .info-text {
+      flex: 1;
+      padding: 1rem;
+    }
+    
+    /* SECCIONES SECUNDARIAS */
+    .secondary-section {
+      background-color: #222222;
+      border: 2px solid #1DCD9F;
+      color: #1DCD9F;
+      padding: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .secondary-section h2,
+    .review h3 {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .secondary-section h2:hover,
+    .review h3:hover {
+      transform: scale(1.05);
+      color: #169976;
+    }
+    .secondary-section img {
+      transition: transform 0.3s ease;
+    }
+    .secondary-section img:hover {
+      transform: scale(1.05);
+    }
+    .secondary-section a {
+      transition: color 0.3s ease;
+    }
+    .secondary-section a:hover {
+      color: #169976;
+    }
+    /* Clase opcional para destacar palabras */
+    .highlight {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .highlight:hover {
+      transform: scale(1.1);
+      color: #169976;
+    }
+    
+    /* SECCIÓN DE CONTACTO */
+    #contacto {
+      background-color: #222222;
+      border: 2px solid #1DCD9F;
+      padding: 2rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    #contacto form {
+      max-width: 600px;
+      margin: auto;
+    }
+    #contacto label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    #contacto input,
+    #contacto textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #169976;
+      border-radius: 4px;
+      background: none;
+      color: #1DCD9F;
+    }
+    #contacto button {
+      padding: 0.7rem 1.5rem;
+      background: #000;
+      color: #1DCD9F;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #contacto button:hover {
+      background: #169976;
+    }
+    
+    /* FOOTER */
+    footer {
+      background-color: #000;
+      color: #1DCD9F;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    footer .descripcion {
+      margin-top: 1rem;
+      background: #169976;
+      padding: 1rem;
+      color: #222;
+    }
+    
+    /* RESPONSIVIDAD */
+    @media (max-width: 768px) {
+      body {
+        margin-right: 0;
+        padding-top: 100px;
+      }
+      aside.aside-section {
+        position: static;
+        width: 100%;
+        margin: 1rem auto 0;
+      }
+      .info-section {
+        flex-direction: column;
+      }
+      .info-section img {
+        width: 100%;
+        margin: 0 0 1rem 0;
+      }
+      .video-wrapper iframe {
+        height: 225px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GLOBAL NAVIGATION (para todas las páginas) -->
+  <nav class="global-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Pagina_Torneos.html">Torneos</a></li>
+      <li><a href="Pagina_Equipos.html">Equipos</a></li>
+      <li><a href="Pagina_Noticias.html">Noticias</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECONDARY NAVIGATION (solo en la página de Inicio) -->
+  <nav class="secondary-nav">
+    <ul>
+      <!-- El link "Inicio" apunta al título de la página -->
+      <li><a href="#titulo">Inicio</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#torneos">Torneos</a></li>
+      <li><a href="#análisis">Análisis</a></li>
+      <li><a href="#noticias">Noticias</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  
+  <!-- TÍTULO DE LA PÁGINA -->
+  <div id="titulo" class="page-title">
+    <img class="title-left" src="Img_Inicio/esports-logo-template-with-trophy-for-gaming-team-or-tournament-free-vector.jpg" alt="Imagen decorativa izquierda">
+    <div class="title-content">
+      <h1>Bienvenidos a E-Sports Tournaments</h1>
+      <p>La mejor experiencia en deportes electrónicos</p>
+    </div>
+    <img class="title-right" src="Img_Inicio/pngegg.png" alt="Imagen decorativa derecha">
+  </div>
+  
+  <!-- SLIDER (Inicio) -->
+  <div id="inicio" class="slider">
+    <div class="slide active">
+      <img src="Img_Inicio/63fe73d90694450859da70fe142d72e445a0a9cc-1600x900.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="Img_Inicio/Iskandar_Investment_Esports_Carnival_2019.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="Img_Inicio/53098657981-5372ccd676-o.png" alt="">
+    </div>
+  </div>
+  
+  <!-- VIDEOS DESTACADOS -->
+  <section id="videos" class="video-section">
+    <h2>Videos Destacados</h2>
+    <div class="video-grid">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/edpTVEpvvu0" title="Video 1" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/P0E--4ns_50" title="Video 2" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ASIDE FIJO -->
+  <aside class="aside-section">
+    <h2>Noticias Relacionadas</h2>
+    <ul>
+      <li><a href="Pagina_Noticias.html#noticia1">Actualización en LoL Worlds</a></li>
+      <li><a href="Pagina_Noticias.html#noticia2">Resultados en IEM Cologne 2025</a></li>
+      <li><a href="Pagina_Noticias.html#noticia3">Innovaciones en CS2</a></li>
+    </ul>
+    <img src="Img_Inicio/semana-olimpica-e-sports.jpg" alt="Aside">
+  </aside>
+  
+  <!-- SECCIONES INFO -->
+  <section id="torneos" class="info-section">
+    <img src="Img_Inicio/IMG_6282-1024x576.jpeg" alt="">
+    <div class="info-text">
+      <h2>¿Qué son los E-Sport y sus Competiciones?</h2>
+      <p>Los eSports (de 'electronic sports' o deportes electrónicos) son competiciones organizadas de videojuegos multijugador, donde jugadores profesionales compiten individualmente o en equipos por premios, prestigio y reconocimiento. Al igual que los deportes tradicionales, los eSports requieren habilidad, estrategia, trabajo en equipo, reflejos y una dedicación intensa para alcanzar el máximo nivel.</p>
+    </div>
+  </section>
+  
+  <section id="análisis" class="info-section">
+    <img src="Img_Inicio/17362682206012.jpeg" alt="">
+    <div class="info-text">
+      <h2>Torneos internacionales y principales eventos</h2>
+      <p>En el vertiginoso mundo de los eSports, donde la pasión por los videojuegos se eleva a un nivel profesional, las competiciones organizadas congregan a talentosos jugadores que se miden en habilidades, estrategias y reflejos por el prestigio y premios. Estos "deportes electrónicos" han trascendido el ocio para convertirse en un fenómeno global, con ligas y torneos que replican la estructura de los deportes tradicionales, atrayendo a millones de espectadores y generando una vibrante comunidad. Las principales competiciones, como el League of Legends World Championship (Worlds), The International de Dota 2, los Majors de Counter-Strike 2 y el Valorant Champions Tour (VCT), son solo algunos ejemplos de la intensa actividad que define esta industria, cada una con sus propios héroes, estadísticas y narrativas que cautivan a una audiencia en constante crecimiento.</p>
+    </div>
+  </section>
+  
+  <section id="noticias" class="info-section">
+    <img src="Img_Inicio/E-Sports.jpg" alt="">
+    <div class="info-text">
+      <h2>Análisis y estadísticas de rendimiento</h2>
+      <p>Culturalmente, los eSports han redefinido el entretenimiento juvenil, creando nuevas estrellas, comunidades vibrantes y una subcultura digital con su propio argot, memes y tendencias que se expanden a la moda y la música, influenciando directamente a millones de jóvenes alrededor del mundo. Han derribado barreras geográficas, permitiendo la interacción y competición global, y han fomentado habilidades como el trabajo en equipo, el pensamiento estratégico y la resiliencia bajo presión, lo que también genera debate sobre su reconocimiento como "deporte". Económicamente, el sector es una potencia en ascenso, proyectándose para alcanzar casi $1.980 millones de dólares en ingresos para 2025, impulsado principalmente por patrocinios de grandes marcas, derechos de transmisión, publicidad, merchandising y la venta de entradas a eventos masivos que llenan estadios, creando un ecosistema laboral diverso que incluye jugadores profesionales, entrenadores, comentaristas, analistas, diseñadores y gestores de eventos, demostrando ser una industria con un crecimiento imparable y un futuro prometedor.</p>
+    </div>
+  </section>
+  
+  <section class="secondary-section" id="secundaria1">
+    <h2>Últimas Noticias de League of Legends</h2>
+    <img src="Img_Inicio/613b652430e8530004ba3a04.png" alt="Logo de League of Legends" style="max-width:180px; display:block; margin: 1rem auto;">
+    <p>
+      Descubre las actualizaciones, nuevos campeones y eventos especiales del juego líder en E-Sports. Mantente al tanto de las novedades, resultados y análisis de tus torneos favoritos.
+    </p>
+    <a href="https://www.leagueoflegends.com/es-es/" target="_blank">Visita la página oficial de League of Legends</a>
+  </section>
+  
+  <section class="secondary-section" id="secundaria2">
+    <h2>Estadísticas y Análisis de Counter Strike 2</h2>
+    <img src="Img_Inicio/628a93aae0bc05a7de76fe34.png" alt="Logo de Counter Strike 2" style="max-width:180px; display:block; margin: 1rem auto;">
+    <p>Explora datos relevantes y análisis de Counter Strike 2:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Mapa</th>
+          <th>Partidas Jugadas</th>
+          <th>Victorias</th>
+          <th>K/D Ratio</th>
+          <th>Mejor Jugador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dust 2</td>
+          <td>120</td>
+          <td>65</td>
+          <td>1.25</td>
+          <td>PlayerAlpha</td>
+        </tr>
+        <tr>
+          <td>Mirage</td>
+          <td>90</td>
+          <td>50</td>
+          <td>1.32</td>
+          <td>TopFrag</td>
+        </tr>
+        <tr>
+          <td>Inferno</td>
+          <td>100</td>
+          <td>55</td>
+          <td>1.18</td>
+          <td>ClutchKing</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Estos datos son representativos y se actualizan periódicamente para ofrecer un análisis profundo del rendimiento en Counter Strike 2.</p>
+  </section>
+  
+  <section class="secondary-section" id="secundaria3">
+    <h2>Entrevistas y Opiniones de Expertos</h2>
+    <article class="review">
+      <h3>Entrevista: La evolución de los E-Sports</h3>
+      <blockquote>
+        "Los deportes electrónicos están transformando la forma en que concebimos la competencia. Cada torneo revela nuevas estrategias y muestra la pasión que unifica a los jugadores."
+      </blockquote>
+      <p>- Alex Martínez, Analista de E-Sports</p>
+    </article>
+    <article class="review">
+      <h3>Reseña: Impacto de la tecnología en los E-Sports</h3>
+      <blockquote>
+        "La integración de la tecnología ha llevado a los E-Sports a un nivel impresionante, haciendo que cada partido sea una experiencia única tanto para jugadores como para espectadores."
+      </blockquote>
+      <p>- Laura Fernández, Crítica de Tecnología y Deporte</p>
+    </article>
+    <article class="review">
+      <h3>Opinión: Perspectiva experta</h3>
+      <blockquote>
+        "La profesionalización de los E-Sports evidencia una era en la que estrategia, análisis y dedicación marcan la diferencia en el rendimiento competitivo."
+      </blockquote>
+      <p>- Carlos Gómez, Experto en Marketing Deportivo</p>
+    </article>
+  </section>
+
+  <!-- SECCIÓN DE CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form action="#" method="post">
+      <div>
+        <label for="nombre">Nombre y Apellido</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre y apellido" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Ingresa tu email" required>
+      </div>
+      <div>
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <!-- Sección del logo -->
+      <div class="footer-logo">
+        <img src="Img_Inicio/logo_uba.png" alt="Logo de la Institución">
+      </div>
+      <!-- Sección de la información -->
+      <div class="footer-info">
+        <p>Arturo Figueredo - Cédula V-31941132</p>
+        <p>Universidad Bicentenaria de Aragua</p>
+        <p>&copy; 2025 Derechos Reservados</p>
+        <div class="descripcion">
+          <h3>Descripción del Sitio</h3>
+          <p>Este sitio se dedica a la promoción y difusión de los deportes electrónicos y competencias de videojuegos. Su objetivo es brindar información detallada, análisis y noticias actualizadas sobre el dinámico mundo de los E-Sports, resaltando la pasión, profesionalización e innovación en este campo.</p>
+          <p>REPÚBLICA BOLIVARIANA DE VENEZUELA</p>
+          <p>UNIVERSIDAD BICENTENARIA DE ARAGUA</p>
+          <p>VICERRECTORADO ACADÉMICO</p>
+          <p>DECANATO DE INGENIERÍA</p>
+          <p>ESCUELA DE INGENIERÍA EN SISTEMAS</p>
+          <p>SAN JOAQUÍN DE TURMERO - ESTADO ARAGUA</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CSS para el FOOTER -->
+  <style>
+    footer {
+      background-color: #000;
+      color: #1DCD9F;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-logo {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+    }
+    .footer-logo img {
+      max-width: 150px;
+      height: auto;
+    }
+    .footer-info {
+      flex: 1 1 auto;
+    }
+    .footer-info p,
+    .footer-info h3,
+    .footer-info .descripcion p {
+      margin: 0.3rem 0;
+    }
+  </style>
+
+  <!-- JavaScript para el slider -->
+  <script>
+    const slides = document.querySelectorAll('.slider .slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3000);
+  </script>
+</body>
+</html>
